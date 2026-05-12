@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ONLINE EVM LOGIN</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#003b8e,#1664d9);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.box{
+background:white;
+padding:40px;
+width:350px;
+border-radius:20px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:15px;
+margin-top:15px;
+font-size:18px;
+border-radius:10px;
+border:2px solid #ddd;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+font-size:20px;
+background:#1664d9;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0c54bf;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🗳 ONLINE EVM</h1>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">
+LOGIN
+</button>
+
+</div>
+
+<script>
+
+const validUsers = [
+"TEST1",
+"TEST2",
+"TEST3",
+"TEST4",
+"TEST5",
+"TEST6",
+"TEST7",
+"TEST8",
+"TEST9",
+"TEST10"
+];
+
+function login(){
+
+let username =
+document.getElementById("username").value.toUpperCase();
+
+let password =
+document.getElementById("password").value;
+
+// ADMIN LOGIN
+
+if(username === "ADMIN14" &&
+password === "4321@1234"){
+
+window.location.href = "results.html";
+
+}
+
+// USER LOGIN
+
+else if(validUsers.includes(username)
+&& password === "1234"){
+
+localStorage.setItem("loggedInUser", username);
+
+window.location.href = "evm.html";
+
+}
+
+else{
+
+alert("❌ Invalid Login");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
