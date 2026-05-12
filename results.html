@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Election Results</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef3fb;
+padding:40px;
+}
+
+.box{
+max-width:900px;
+margin:auto;
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+
+.header{
+background:#003b8e;
+color:white;
+padding:25px;
+text-align:center;
+font-size:35px;
+font-weight:bold;
+}
+
+.party{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+border-bottom:1px solid #ddd;
+}
+
+.left{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.left img{
+width:70px;
+height:70px;
+border-radius:10px;
+}
+
+.name{
+font-size:25px;
+font-weight:bold;
+}
+
+.count{
+font-size:30px;
+color:#1664d9;
+font-weight:bold;
+}
+
+.winner{
+text-align:center;
+padding:30px;
+font-size:35px;
+color:green;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="header">
+📊 ELECTION RESULTS
+</div>
+
+<div class="party">
+<div class="left">
+<img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Tamilaga_Vetri_Kazhagam_flag.png">
+<div class="name">TVK</div>
+</div>
+<div class="count" id="tvk">0</div>
+</div>
+
+<div class="party">
+<div class="left">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/DMK_Flag.svg">
+<div class="name">DMK</div>
+</div>
+<div class="count" id="dmk">0</div>
+</div>
+
+<div class="party">
+<div class="left">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/88/AIADMK_flag.png">
+<div class="name">AIADMK</div>
+</div>
+<div class="count" id="aiadmk">0</div>
+</div>
+
+<div class="party">
+<div class="left">
+<img src="https://upload.wikimedia.org/wikipedia/en/4/43/Naam_Tamizhar_Katchi.png">
+<div class="name">NTK</div>
+</div>
+<div class="count" id="ntk">0</div>
+</div>
+
+<div class="party">
+<div class="left">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Bharatiya_Janata_Party_logo.svg">
+<div class="name">BJP</div>
+</div>
+<div class="count" id="bjp">0</div>
+</div>
+
+<div class="winner" id="winner">
+🏆 WINNER
+</div>
+
+</div>
+
+<script>
+
+let votes =
+JSON.parse(localStorage.getItem("votes")) || {
+
+TVK:0,
+DMK:0,
+AIADMK:0,
+NTK:0,
+BJP:0
+
+};
+
+document.getElementById("tvk").innerText =
+votes.TVK;
+
+document.getElementById("dmk").innerText =
+votes.DMK;
+
+document.getElementById("aiadmk").innerText =
+votes.AIADMK;
+
+document.getElementById("ntk").innerText =
+votes.NTK;
+
+document.getElementById("bjp").innerText =
+votes.BJP;
+
+let winner = "";
+let maxVotes = 0;
+
+for(let party in votes){
+
+if(votes[party] > maxVotes){
+
+maxVotes = votes[party];
+winner = party;
+
+}
+
+}
+
+if(maxVotes === 0){
+
+document.getElementById("winner").innerHTML =
+"❌ No Votes Yet";
+
+}
+else{
+
+document.getElementById("winner").innerHTML =
+"🏆 WINNER: " + winner;
+
+}
+
+</script>
+
+</body>
+</html>
